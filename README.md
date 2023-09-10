@@ -1,37 +1,42 @@
-# Docker Run Command Extractor
 
-This script allows users to easily extract the `docker run` command from a running container. It generates a command that includes all the parameters such as environment variables and port mappings used when the container was initiated.
+# Docker Run Command Generator
+
+## Description
+This script allows you to generate `docker run` commands from running Docker containers. It can either generate a command for a specific container or for all running containers, saving the commands to separate files.
+
+## Requirements
+- Docker
+- Bash shell
+
+## Installation
+You can directly download the script from the GitHub repository and give it executable permissions using the following commands:
+
+```sh
+curl -O https://raw.githubusercontent.com/ras434/DockerRunCmdGenerator/main/drg.sh
+chmod +x drg.sh
+```
 
 ## Usage
+To generate a `docker run` command for a specific container, run the script with the container name as an argument:
 
-```bash
-./extract_docker_run.sh <container_name>
+```sh
+./drg.sh <container_name>
 ```
 
-## Output
+To generate `docker run` commands for all running containers and save them to separate files, run the script with the `--backup` option:
 
-The script outputs a `docker run` command with all the parameters formatted properly. Here is an example output:
-
-```bash
-docker run \
-     --name nodeodm \
-     -e "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
-     -e "DEBIAN_FRONTEND=noninteractive" \
-     -e "PYTHONPATH=:/code/SuperBuild/install/lib/python3.9/dist-packages:/code/SuperBuild/install/lib/python3.8/dist-packages:/code/SuperBuild/install/bin/opensfm" \
-     -e "LD_LIBRARY_PATH=:/code/SuperBuild/install/lib" \
-     -e "PDAL_DRIVER_PATH=/code/SuperBuild/install/bin" \
-     -p 0.0.0.0:3002 \
-# Image Name: opendronemap/nodeodm
+```sh
+./drg.sh --backup
 ```
 
-## Version
-
-1.0.0
+If no argument is provided, the script will list all running containers and prompt you to select one.
 
 ## Credits
+This project was developed with the assistance of OpenAI's ChatGPT. 
 
-This script was developed with the assistance of OpenAI's GPT-3, specifically the ChatGPT model. The project facilitated the creation of a script that makes it easier to extract `docker run` commands from running containers, thereby aiding in the replication and sharing of docker container configurations.
+## Version Details
+- Version: 1.0.0
+- Release Date: 2023-09-10
 
 ## License
-
-[MIT License](LICENSE)
+This project is licensed under the MIT License.
